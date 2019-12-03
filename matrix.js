@@ -15,12 +15,13 @@ class Matrix{
     }
 
     dot(mat2){
+        if(mat2 != null)
         if(this.dims[1] == mat2.dims[0]){
             let newDims = [this.dims[0], mat2.dims[1]];
             let args = [this.shaped, rotateArray(mat2.shaped)];
             let arr = [];
-            for(let i = 0; i < newDims[1]; i++){
-                for(let k = 0; k < newDims[0]; k++){
+            for(let i = 0; i < newDims[0]; i++){
+                for(let k = 0; k < newDims[1]; k++){
                     arr.push(dotProduct(args[1][k], args[0][i]));
                 }
             }
@@ -55,4 +56,8 @@ function rotateArray(array){
         }
     }
     return arr;
+}
+
+function rotationMatrix(angle){
+    return new Matrix([Math.cos(angle), -Math.sin(angle), Math.sin(angle), Math.cos(angle)], [2,2]);
 }
